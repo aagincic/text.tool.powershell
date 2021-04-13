@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "text.tool.core", "text.tool.core\text.tool.core.csproj", "{587E659D-5B3C-4612-9AED-61A8E54A65FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "texttool.powershell", "texttool.powershell\texttool.powershell.csproj", "{9349C624-8CE4-4C9F-A831-50458C8B8905}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{587E659D-5B3C-4612-9AED-61A8E54A65FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{587E659D-5B3C-4612-9AED-61A8E54A65FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{587E659D-5B3C-4612-9AED-61A8E54A65FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{587E659D-5B3C-4612-9AED-61A8E54A65FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9349C624-8CE4-4C9F-A831-50458C8B8905}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9349C624-8CE4-4C9F-A831-50458C8B8905}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9349C624-8CE4-4C9F-A831-50458C8B8905}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9349C624-8CE4-4C9F-A831-50458C8B8905}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5A1B694B-0394-4F78-B584-2C7E9B341037}
+	EndGlobalSection
+EndGlobal

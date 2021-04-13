@@ -1,0 +1,4 @@
+﻿
+(1) Importing module
+
+Import-Module "c:\Aleksandar\Development\Projects\TextTransformPowershell\TextTransformPowershell\texttool.powershell\bin\Debug\texttool.powershell.dll" -Force
