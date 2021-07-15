@@ -2,3 +2,11 @@
 (1) Importing module
 
 Import-Module "c:\Aleksandar\Development\Projects\TextTransformPowershell\TextTransformPowershell\texttool.powershell\bin\Debug\texttool.powershell.dll" -Force
+
+
+(2) CleanUpSQLManagmentScript 
+Format-TextTool -Tool CleanUpSQLManagmentScript -FileNames ".\generated-script.sql"
+
+
+(3) JsonMapper
+Get-JsonMapper -NamespaceName "gip.web.core" -RootFolder "c:\Aleksandar\Development\linqpad-scripts\Handlebars.net\"
