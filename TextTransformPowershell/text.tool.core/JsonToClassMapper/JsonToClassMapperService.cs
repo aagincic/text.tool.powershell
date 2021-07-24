@@ -13,13 +13,85 @@ namespace text.tool.core.JsonToClassMapper
     {
 
         #region const
-
+        public const string Const_ReservedKeywords =
+@"abstract
+as
+base
+bool
+break
+byte
+case
+catch
+char
+checked
+class
+const
+continue
+decimal
+default
+delegate
+do
+double
+event
+explicit
+extern
+false
+finally
+fixed
+float
+for
+foreach
+goto
+if
+implicit
+in
+int
+interface
+internal
+is
+lock
+new
+null
+object
+operator
+out
+override
+params
+private
+protected
+public
+readonly
+ref
+return
+sbyte
+sealed
+short
+sizeof
+stackalloc
+struct
+switch
+this
+throw
+true
+try
+typeof
+uint
+ulong
+unchecked
+unsafe
+ushort
+using
+virtual
+void
+volatile
+new";
         #endregion
 
 
         #region DI
         public string RootFolder { get; private set; }
         public string NamespaceName { get; private set; }
+        public string Prefix { get; private set; }
         public List<ClassModel> ClassModels { get; private set; }
 
         public string TemplateContent { get; private set; }
@@ -27,10 +99,11 @@ namespace text.tool.core.JsonToClassMapper
         #endregion
 
         #region ctor's
-        public JsonToClassMapperService(string nmSpace, string rootFolder, string[] jsonFiles)
+        public JsonToClassMapperService(string nmSpace, string prefix, string rootFolder, string[] jsonFiles)
         {
             RootFolder = rootFolder;
             NamespaceName = nmSpace;
+            Prefix = prefix;
 
             TemplateContent = GetTemplateContent();
             Template = Handlebars.Compile(TemplateContent);
@@ -42,7 +115,7 @@ namespace text.tool.core.JsonToClassMapper
                 ClassModels.Add(classModel);
             }
 
-            foreach(ClassModel classModel in ClassModels)
+            foreach (ClassModel classModel in ClassModels)
             {
                 string fileName = Path.Combine(RootFolder, classModel.FileName + ".cs");
                 File.WriteAllText(fileName, classModel.GeneratedClassContent);
@@ -69,7 +142,7 @@ namespace text.tool.core.JsonToClassMapper
             classModel.ClassName = classModel.FileName.Replace(".", "_");
 
             List<Label> labels = GetLabels(Path.Combine(RootFolder, jsonFile));
-            classModel.Properties = GetPropertyModel(NamespaceName, labels);
+            classModel.Properties = GetPropertyModel(Prefix, labels);
             GenerateClassTemplate(classModel);
             return classModel;
         }
@@ -93,9 +166,17 @@ namespace text.tool.core.JsonToClassMapper
         {
             return labels.Select(c => new PropertyModel()
             {
-                PropertyName = c.LabelNo.TrimStart(prefix.ToCharArray()),
+                PropertyName = GetPropertyName(c.LabelNo, prefix),
                 PropertyValue = c.LabelNo
             }).ToList();
+        }
+
+        private string GetPropertyName(string labelNo, string prefix)
+        {
+            string propertyName = labelNo.Replace(prefix + ".", "");
+            if(Const_ReservedKeywords.Contains(propertyName))
+                propertyName = "_" + propertyName;
+            return propertyName;
         }
         #endregion
     }

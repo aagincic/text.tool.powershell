@@ -23,7 +23,13 @@ namespace texttool.powershell
         public string NamespaceName { get; set; }
 
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
+        public string Prefix { get; set; }
+
+        [Parameter(Mandatory = true, ValueFromPipeline = true)]
         public string RootFolder { get; set; }
+
+        [Parameter(Mandatory = false, ValueFromPipeline = true)]
+        public string Filter { get; set; }
 
 
 
@@ -32,8 +38,12 @@ namespace texttool.powershell
         #region Methods
         protected override void ProcessRecord()
         {
-            string [] jsonFiles = new DirectoryInfo(RootFolder).GetFiles("*.json").Select(c=>c.Name).ToArray();
-            new JsonToClassMapperService(NamespaceName, RootFolder, jsonFiles);
+            string [] jsonFiles = 
+                new DirectoryInfo(RootFolder)
+                .GetFiles("*.json")
+                .Where(c=> Filter == null || c.Name.Contains(Filter))
+                .Select(c=>c.Name).ToArray();
+            new JsonToClassMapperService(NamespaceName, Prefix, RootFolder, jsonFiles);
         }
         #endregion
     }
