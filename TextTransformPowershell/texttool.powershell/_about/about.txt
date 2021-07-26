@@ -9,4 +9,10 @@ Format-TextTool -Tool CleanUpSQLManagmentScript -FileNames ".\generated-script.s
 
 
 (3) JsonMapper
-Get-JsonMapper -NamespaceName "gip.web.core" -RootFolder "c:\Aleksandar\Development\linqpad-scripts\Handlebars.net\"
+
+3.1 Parsing namespace and suffix from file name
+Get-JsonMapper -RootFolder "c:\Aleksandar\Development\linqpad-scripts\Handlebars.net\"
+
+3.2 Setup namespace and Suffix (setup all params)
+Get-JsonMapper -RootFolder "c:\..." -NamespaceName "gip.web.core" -Prefix "gip.web.core" -Suffix "translation.json"
+Get-JsonMapper -RootFolder "c:\..." -NamespaceName "gip.core.membership" -Prefix "gip.core.membership.validation" -Suffix "translation.json"

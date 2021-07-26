@@ -54,6 +54,7 @@
     <Compile Include="JsonToClassMapper\Model\ClassModel.cs" />
     <Compile Include="JsonToClassMapper\Model\Label.cs" />
     <Compile Include="JsonToClassMapper\Model\LabelTranslation.cs" />
+    <Compile Include="JsonToClassMapper\Model\NameSpaceModel.cs" />
     <Compile Include="JsonToClassMapper\Model\PropertyModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

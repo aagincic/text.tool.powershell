@@ -18,19 +18,28 @@ namespace texttool.powershell
 
         #region Params
 
-
-        [Parameter(Mandatory = true, ValueFromPipeline = true)]
-        public string NamespaceName { get; set; }
-
-        [Parameter(Mandatory = true, ValueFromPipeline = true)]
-        public string Prefix { get; set; }
+        #region Params -> Mandatory
 
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
         public string RootFolder { get; set; }
 
+        #endregion
+
+        #region Params -> Not Mandatory
+
+        [Parameter(Mandatory = false, ValueFromPipeline = true)]
+        public string NamespaceName { get; set; }
+
+        [Parameter(Mandatory = false, ValueFromPipeline = true)]
+        public string Prefix { get; set; }
+
+        [Parameter(Mandatory = false, ValueFromPipeline = true)]
+        public string Suffix { get; set; }
+
         [Parameter(Mandatory = false, ValueFromPipeline = true)]
         public string Filter { get; set; }
 
+        #endregion
 
 
         #endregion
@@ -43,7 +52,7 @@ namespace texttool.powershell
                 .GetFiles("*.json")
                 .Where(c=> Filter == null || c.Name.Contains(Filter))
                 .Select(c=>c.Name).ToArray();
-            new JsonToClassMapperService(NamespaceName, Prefix, RootFolder, jsonFiles);
+            new JsonToClassMapperService(RootFolder, jsonFiles, NamespaceName, Prefix, Suffix);
         }
         #endregion
     }

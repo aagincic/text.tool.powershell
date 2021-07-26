@@ -85,13 +85,13 @@ virtual
 void
 volatile
 new";
+
+        public const string Const_Suffix = @".translation.json";
         #endregion
 
 
         #region DI
         public string RootFolder { get; private set; }
-        public string NamespaceName { get; private set; }
-        public string Prefix { get; private set; }
         public List<ClassModel> ClassModels { get; private set; }
 
         public string TemplateContent { get; private set; }
@@ -99,11 +99,11 @@ new";
         #endregion
 
         #region ctor's
-        public JsonToClassMapperService(string nmSpace, string prefix, string rootFolder, string[] jsonFiles)
+        public JsonToClassMapperService(string rootFolder, string[] jsonFiles, string nmSpace = null, string prefix = null, string suffix = null)
         {
             RootFolder = rootFolder;
-            NamespaceName = nmSpace;
-            Prefix = prefix;
+            if (string.IsNullOrEmpty(suffix))
+                suffix = Const_Suffix;
 
             TemplateContent = GetTemplateContent();
             Template = Handlebars.Compile(TemplateContent);
@@ -111,7 +111,8 @@ new";
             ClassModels = new List<ClassModel>();
             foreach (var jsonFile in jsonFiles)
             {
-                ClassModel classModel = GetClassModel(jsonFile);
+                NameSpaceModel nameSpaceModel = GetNameSpaceModel(nmSpace, prefix, jsonFile, suffix);
+                ClassModel classModel = GetClassModel(jsonFile, nameSpaceModel);
                 ClassModels.Add(classModel);
             }
 
@@ -120,6 +121,45 @@ new";
                 string fileName = Path.Combine(RootFolder, classModel.FileName + ".cs");
                 File.WriteAllText(fileName, classModel.GeneratedClassContent);
             }
+        }
+
+        private NameSpaceModel GetNameSpaceModel(string nmSpace, string prefix, string jsonFile, string sufix)
+        {
+            NameSpaceModel nameSpaceModel = new NameSpaceModel()
+            {
+                NameSpace = nmSpace,
+                Prefix = prefix
+            };
+            if (!string.IsNullOrEmpty(nameSpaceModel.NameSpace))
+            {
+                if (string.IsNullOrEmpty(nameSpaceModel.Prefix))
+                    nameSpaceModel.Prefix = nmSpace;
+            }
+            else
+            {
+                string fileName = jsonFile;
+                fileName = fileName.Replace(sufix, "");
+                string[] parts = fileName.Split('.');
+                if (parts.Length > 2)
+                {
+                    for (int i = 0; i < parts.Length; i++)
+                    {
+                        if (i < 3)
+                        {
+                            nameSpaceModel.NameSpace += parts[i];
+                            nameSpaceModel.NameSpace += ".";
+                        }
+                        else
+                        {
+                            nameSpaceModel.Prefix += parts[i];
+                            nameSpaceModel.Prefix += ".";
+                        }
+                    }
+                    nameSpaceModel.NameSpace = nameSpaceModel.NameSpace.TrimEnd('.');
+                    nameSpaceModel.Prefix = nameSpaceModel.NameSpace + "." + nameSpaceModel.Prefix.TrimEnd('.');
+                }
+            }
+            return nameSpaceModel;
         }
 
         private string GetTemplateContent()
@@ -134,15 +174,15 @@ new";
             return result;
         }
 
-        private ClassModel GetClassModel(string jsonFile)
+        private ClassModel GetClassModel(string jsonFile, NameSpaceModel nameSpaceModel)
         {
             ClassModel classModel = new ClassModel();
             classModel.FileName = Path.GetFileNameWithoutExtension(jsonFile);
-            classModel.NameSpaceName = NamespaceName + ".JsonTranslation";
+            classModel.NameSpaceName = nameSpaceModel.NameSpace + ".JsonTranslation";
             classModel.ClassName = classModel.FileName.Replace(".", "_");
 
             List<Label> labels = GetLabels(Path.Combine(RootFolder, jsonFile));
-            classModel.Properties = GetPropertyModel(Prefix, labels);
+            classModel.Properties = GetPropertyModel(nameSpaceModel.Prefix, labels);
             GenerateClassTemplate(classModel);
             return classModel;
         }
@@ -174,8 +214,9 @@ new";
         private string GetPropertyName(string labelNo, string prefix)
         {
             string propertyName = labelNo.Replace(prefix + ".", "");
-            if(Const_ReservedKeywords.Contains(propertyName))
+            if (Const_ReservedKeywords.Contains(propertyName))
                 propertyName = "_" + propertyName;
+            propertyName = propertyName.Replace(".", "_");
             return propertyName;
         }
         #endregion

@@ -14,7 +14,8 @@ namespace text.tool.core
             string nmSpace = "gip.web.core";
             string rootFolder = @"c:\Aleksandar\Development\linqpad-scripts\Handlebars.net\";
             string[] jsonFiles = new string[] { "gip.web.core.translation.json" };
-            JsonToClassMapperService testService = new JsonToClassMapperService(nmSpace, nmSpace, rootFolder, jsonFiles);
+            string prefix = null;
+            JsonToClassMapperService testService = new JsonToClassMapperService(rootFolder, jsonFiles, nmSpace, prefix);
         }
     }
 }
