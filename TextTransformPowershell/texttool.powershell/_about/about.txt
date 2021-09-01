@@ -16,3 +16,23 @@ Get-JsonMapper -RootFolder "c:\Aleksandar\Development\linqpad-scripts\Handlebars
 3.2 Setup namespace and Suffix (setup all params)
 Get-JsonMapper -RootFolder "c:\..." -NamespaceName "gip.web.core" -Prefix "gip.web.core" -Suffix "translation.json"
 Get-JsonMapper -RootFolder "c:\..." -NamespaceName "gip.core.membership" -Prefix "gip.core.membership.validation" -Suffix "translation.json"
+
+Usage wihtout prefix (file name is used to detect prefix)
+Get-JsonMapper -RootFolder "c:\..." -NamespaceName "gip.core.membership"  -Suffix "translation.json"
+
+
+
+
+C:\Aleksandar\Development\Projects\alexcms\src\gip.core.membership\JsonTranslation\
+gip.core.membership.validation.translation.json
+gip.core.membership.validation.registration.translation.json
+gip.core.membership.validation.passwordrecovery.translation.json
+gip.core.membership.validation.authentification.translation.json
+gip.core.membership.validation.activation.translation.json
+gip.core.membership.lbl.translation.json
+Get-JsonMapper -RootFolder "C:\Aleksandar\Development\Projects\alexcms\src\gip.core.membership\JsonTranslation\" -NamespaceName "gip.core.membership" -Prefix "gip.core.membership.validation.registration" -Suffix "translation.json" -Filter ""
+
+
+Get-JsonMapper -RootFolder "C:\Aleksandar\Development\Projects\alexcms\src\gip.core.membership\JsonTranslation\" -NamespaceName "gip.core.membership"  -Suffix "translation.json"
+Get-JsonMapper -RootFolder "c:\VarioData\_temp\" -NamespaceName "gip.core.membership"  -Suffix "translation.json"
+Get-JsonMapper -RootFolder "C:\Aleksandar\Development\Projects\alexcms\src\gip.core.addressbook\JsonTranslation\" -NamespaceName "gip.core.addressbook"  -Suffix "translation.json"

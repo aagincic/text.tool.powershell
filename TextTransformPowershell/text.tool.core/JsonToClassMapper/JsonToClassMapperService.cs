@@ -133,7 +133,11 @@ new";
             if (!string.IsNullOrEmpty(nameSpaceModel.NameSpace))
             {
                 if (string.IsNullOrEmpty(nameSpaceModel.Prefix))
-                    nameSpaceModel.Prefix = nmSpace;
+                {
+                    nameSpaceModel.Prefix = Path.GetFileName(jsonFile);
+                    nameSpaceModel.Prefix = nameSpaceModel.Prefix.Replace(sufix, "");
+                    nameSpaceModel.Prefix = nameSpaceModel.Prefix.TrimEnd('.');
+                }
             }
             else
             {

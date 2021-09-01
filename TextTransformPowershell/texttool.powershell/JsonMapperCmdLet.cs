@@ -52,6 +52,7 @@ namespace texttool.powershell
                 .GetFiles("*.json")
                 .Where(c=> Filter == null || c.Name.Contains(Filter))
                 .Select(c=>c.Name).ToArray();
+
             new JsonToClassMapperService(RootFolder, jsonFiles, NamespaceName, Prefix, Suffix);
         }
         #endregion

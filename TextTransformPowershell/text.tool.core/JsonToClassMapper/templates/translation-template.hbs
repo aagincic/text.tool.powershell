@@ -10,7 +10,7 @@ namespace {{NameSpaceName}}
 	public static class {{ClassName}}
 	{
 		{{#each Properties}}
-		   public static string {{PropertyName}} = "@{{PropertyValue}}";
+		   public static string {{PropertyName}} = @"{{PropertyValue}}";
         {{/each}}
 	}
 }
