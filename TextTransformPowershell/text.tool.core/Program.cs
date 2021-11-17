@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using text.tool.core.JsonToClassMapper;
+﻿using text.tool.core.EnumFromCsv;
 
 namespace text.tool.core
 {
@@ -11,11 +6,12 @@ namespace text.tool.core
     {
         static void Main(string[] args)
         {
-            string nmSpace = "gip.web.core";
-            string rootFolder = @"c:\Aleksandar\Development\linqpad-scripts\Handlebars.net\";
-            string[] jsonFiles = new string[] { "gip.web.core.translation.json" };
-            string prefix = null;
-            JsonToClassMapperService testService = new JsonToClassMapperService(rootFolder, jsonFiles, nmSpace, prefix);
+            string sourceFolder = @"g:\My Drive\gipSoft\gip-soft notes\Partners\PanPek\Jupiter\csv\";
+            string targetFolder = @"C:\Aleksandar\gipSoft\Source\my-projects\PanPekDemoData\DemoData\DataInfo\ColumnEnums\";
+            string namespaceName = @"DemoData.DataInfo.ColumnEnums";
+
+            CSVHeaderToEnumService cSVHeaderToEnumService = new CSVHeaderToEnumService(sourceFolder, targetFolder, namespaceName);
+            string[] result = cSVHeaderToEnumService.DoWork();
         }
     }
 }

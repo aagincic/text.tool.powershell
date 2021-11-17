@@ -9,5 +9,6 @@ namespace texttool.powershell
     public class CmdLetSettings
     {
         public const string Const_TextToolName = "TextTool";
+        public const string Const_CSVToEnum= "CSVToEnum";
     }
 }

@@ -36,3 +36,9 @@ Get-JsonMapper -RootFolder "C:\Aleksandar\Development\Projects\alexcms\src\gip.c
 Get-JsonMapper -RootFolder "C:\Aleksandar\Development\Projects\alexcms\src\gip.core.membership\JsonTranslation\" -NamespaceName "gip.core.membership"  -Suffix "translation.json"
 Get-JsonMapper -RootFolder "c:\VarioData\_temp\" -NamespaceName "gip.core.membership"  -Suffix "translation.json"
 Get-JsonMapper -RootFolder "C:\Aleksandar\Development\Projects\alexcms\src\gip.core.addressbook\JsonTranslation\" -NamespaceName "gip.core.addressbook"  -Suffix "translation.json"
+Get-JsonMapper -RootFolder "C:\Aleksandar\Development\Projects\alexcms\src\gip.core.memento\JsonTranslation\" -NamespaceName "gip.core.memento"  -Suffix "translation.json"
+Get-JsonMapper -RootFolder "C:\Aleksandar\Development\Projects\alexcms\src\gip.core.translation\JsonTranslation\" -NamespaceName "gip.core.translation"  -Suffix "translation.json"
+
+(4) Set-CSVToEnum -NamespaceName "gip.data" -SourceFolder "C:\Aleksandar\Development\CSV" -TargetFolder "C:\Aleksandar\cs"
+
+Set-CSVToEnum -NamespaceName "DemoData.DataInfo.ColumnEnums" -SourceFolder "g:\My Drive\gipSoft\gip-soft notes\Partners\PanPek\Jupiter\csv\" -TargetFolder "C:\Aleksandar\gipSoft\Source\my-projects\PanPekDemoData\DemoData\DataInfo\ColumnEnums\"

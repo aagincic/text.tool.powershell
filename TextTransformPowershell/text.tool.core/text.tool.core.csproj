@@ -50,6 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EnumFromCsv\CSVHeaderToEnumService.cs" />
+    <Compile Include="EnumFromCsv\Model\CSVEnumModel.cs" />
     <Compile Include="JsonToClassMapper\JsonToClassMapperService.cs" />
     <Compile Include="JsonToClassMapper\Model\ClassModel.cs" />
     <Compile Include="JsonToClassMapper\Model\Label.cs" />
@@ -67,6 +69,7 @@
     <EmbeddedResource Include="JsonToClassMapper\templates\translation-template.hbs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="EnumFromCsv\templates\csv-enum-template.hbs" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
