@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "text.tool.core", "text.tool.core\text.tool.core.csproj", "{587E659D-5B3C-4612-9AED-61A8E54A65FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "texttool.powershell", "texttool.powershell\texttool.powershell.csproj", "{9349C624-8CE4-4C9F-A831-50458C8B8905}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "text.tool.powershell", "text.tool.powershell\text.tool.powershell.csproj", "{9349C624-8CE4-4C9F-A831-50458C8B8905}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
