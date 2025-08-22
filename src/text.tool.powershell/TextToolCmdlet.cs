@@ -28,8 +28,6 @@ namespace texttool.powershell
 
         #endregion
 
-
-
         #region Process
 
         protected override void ProcessRecord()
